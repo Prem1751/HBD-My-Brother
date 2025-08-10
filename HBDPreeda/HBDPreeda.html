@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เซอร์ไพส์วันเกิด!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffebee;
+            text-align: center;
+            color: #d81b60;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* หน้าล็อกอิน */
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .login-container h1 {
+            margin-bottom: 20px;
+            color: #c2185b;
+            font-size: 2.2em;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            border: 3px solid #f8bbd0;
+            border-radius: 30px;
+            font-size: 18px;
+            text-align: center;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .login-container input:focus {
+            border-color: #e91e63;
+            box-shadow: 0 0 15px rgba(233, 30, 99, 0.5);
+            transform: scale(1.03);
+        }
+
+        .login-container button {
+            background: linear-gradient(45deg, #e91e63, #c2185b);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .login-container button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #c2185b, #e91e63);
+        }
+
+        /* หน้าหลัก */
+        .main-content {
+            display: none;
+            padding: 40px 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .birthday-card {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .birthday-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 15px solid rgba(248, 187, 208, 0.8);
+            margin: 20px auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s ease;
+        }
+
+        .birthday-image:hover {
+            transform: scale(1.1) rotate(5deg);
+            border-color: rgba(233, 30, 99, 0.8);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #e91e63;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        /* สำหรับคำอวยพร */
+        .wishes {
+            margin-top: 30px;
+            font-style: italic;
+            color: #ad1457;
+            font-size: 1.3em;
+            line-height: 1.8;
+        }
+
+        /* สไตล์สำหรับมือถือ */
+        @media only screen and (max-width: 600px) {
+            .login-container {
+                padding: 25px;
+            }
+
+            .login-container h1 {
+                font-size: 1.8em;
+            }
+
+            .login-container input {
+                padding: 12px;
+                font-size: 16px;
+            }
+
+            .login-container button {
+                padding: 12px;
+                font-size: 16px;
+            }
+
+            .birthday-card {
+                padding: 25px;
+            }
+
+            .birthday-image {
+                width: 180px;
+                height: 180px;
+                border-width: 10px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .wishes {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- หน้าล็อกอิน -->
+    <div class="login-container" id="loginSection">
+        <h1>เซอร์ไพส์วันเกิด!</h1>
+        <p>กรุณากรอกรหัสผ่านเพื่อเข้าสู่ระบบ</p><br>
+        <p>คำใบ้ : วันเกิด</p>
+        <input type="text" id="passwordInput" placeholder="กรอกรหัสผ่าน..." 
+               autocapitalize="off" autocomplete="off" inputmode="text">
+        <button onclick="checkPassword()">เข้าสู่ระบบ</button>
+    </div>
+
+    <!-- หน้าหลัก -->
+    <div class="main-content" id="mainContent">
+        <div class="birthday-card">
+            <h1 id="birthdayTitle">สุขสันต์วันเกิด!</h1>
+            <img src="2b70cf7c-de8e-464b-9e77-10a222cc0204.jpg" alt="รูปวันเกิด" class="birthday-image" id="birthdayImage">
+            <div class="wishes">
+                <p>ขอให้ปรีดามีความสุขมากๆ สุขภาพแข็งแรง</p>
+                <p>สมหวังในทุกสิ่งที่ปรารถนา</p>
+                <p>ขอให้ทำตามเป้าหมายของตัวเองให้สำเร็จ</p>
+                <p>และพบแต่ความสุขความเจริญในชีวิตนะ!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ตรวจสอบรหัสผ่าน
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value.trim();
+            if (password.toLowerCase() === "07/02/2519") {
+                document.getElementById('loginSection').style.opacity = '0';
+                document.getElementById('loginSection').style.pointerEvents = 'none';
+                
+                // แสดงหน้าหลัก
+                setTimeout(() => {
+                    document.getElementById('loginSection').style.display = 'none';
+                    document.getElementById('mainContent').style.display = 'block';
+                    document.getElementById('passwordInput').blur();
+                }, 500);
+            } else {
+                alert("รหัสผ่านไม่ถูกต้อง! ลองอีกครั้งนะ");
+                document.getElementById('passwordInput').focus();
+            }
+        }
+
+        // ตรวจสอบเมื่อกด Enter ในช่องรหัสผ่าน
+        document.getElementById('passwordInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter' || event.keyCode === 13) {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>
